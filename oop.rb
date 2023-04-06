@@ -9,7 +9,7 @@ class Unicorn
         @color = "Silver"
     end
     def say(input)
-    return "*~* #{input} *~*"
+    "*~* #{input} *~*"
     end
 end
 
@@ -104,32 +104,30 @@ class Hobbit
         @is_adult = false
         @is_old = false
         @has_ring = false
-        if @age >= 101
-            @is_adult = true
-            @is_old = true
-        elsif age >= 33
-            @is_adult = true
-        end
-        if @name == "Frodo"
-            @has_ring = true
-        end
+    end
+    def has_ring
+        @has_ring = true if @name == "Frodo"
     end
     def celebrate_birthday
         @age += 1
+        @is_adult = true if @age >= 33
+        @is_old = true if @age >= 101
     end
-    
 end
 
 #Test
 sam = Hobbit.new("Samwise", "loving", 39)
 frodo = Hobbit.new("Frodo", "Curious", 51)
 bilbo = Hobbit.new("Bilbo", "adventurous", 129)
+frodo.celebrate_birthday
+sam.celebrate_birthday
+bilbo.celebrate_birthday
 p sam.is_adult          #true
 p sam.is_old            #false
-p sam.has_ring          #false
+p sam.has_ring          #nil
 p frodo.is_adult        #true
 p frodo.is_old          #false
 p frodo.has_ring        #true
 p bilbo.is_adult        #true
 p bilbo.is_old          #true
-p bilbo.has_ring        #false
+p bilbo.has_ring        #nil
